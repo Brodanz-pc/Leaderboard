@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>★ English Club — Star Leaderboard</title>
+<title>★ English Club Fatkar — Star Leaderboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -15,6 +15,8 @@
     --violet:#8b5cf6;
     --cyan:#22d3ee;
     --pink:#f472b6;
+    --green:#34d399;
+    --red:#f43f5e;
     --line:rgba(255,255,255,.09);
     --text:#eaeaf5;
     --muted:#8b8ba8;
@@ -123,7 +125,7 @@
   .sub b{color:#c8c8de;font-weight:600}
 
   /* ==================== STATS ==================== */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:44px 0 56px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:44px 0 32px}
 
   .stat{
     background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.015));
@@ -163,7 +165,220 @@
   }
   .stat .v span{font-size:.6em;color:var(--gold);filter:drop-shadow(0 0 8px rgba(255,217,61,.7))}
 
+  /* ===== Special day card ===== */
+  .stat.special{
+    background:linear-gradient(160deg,rgba(255,217,61,.1),rgba(244,114,182,.04));
+    border-color:rgba(255,217,61,.3);
+  }
+  .stat.special .k{color:var(--gold)}
+  .stat.special::after{
+    background:radial-gradient(circle,rgba(255,217,61,.65),transparent 70%);
+    opacity:.5;
+  }
+  .stat.special:hover{border-color:rgba(255,217,61,.7)}
+
+  .special-date{
+    display:flex;align-items:baseline;gap:10px;
+    margin-bottom:8px;position:relative;z-index:1;
+  }
+  .special-date .day{
+    font-size:clamp(2rem,5.2vw,2.9rem);font-weight:800;
+    letter-spacing:-.045em;line-height:1;
+    background:linear-gradient(135deg,#ffd93d,#fb923c,#f472b6);
+    background-size:200% auto;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:shimmer 5s linear infinite;
+    filter:drop-shadow(0 0 22px rgba(255,217,61,.5));
+  }
+  .special-date .month{
+    font-size:14px;font-weight:800;color:var(--gold);
+    letter-spacing:.08em;text-transform:uppercase;
+    position:relative;
+  }
+  .special-date .year{
+    font-size:13px;color:var(--muted);font-weight:700;
+    margin-left:2px;
+  }
+
+  .special-note{
+    font-size:12px;color:#b8b8d0;line-height:1.55;
+    display:flex;align-items:center;gap:6px;
+    position:relative;z-index:1;
+    font-weight:600;
+  }
+  .special-note svg{width:12px;height:12px;flex-shrink:0;color:var(--gold)}
+
+  .special-countdown{
+    display:inline-flex;align-items:center;gap:6px;
+    margin-top:10px;padding:5px 11px;border-radius:100px;
+    background:rgba(255,217,61,.12);
+    border:1px solid rgba(255,217,61,.28);
+    color:var(--gold);
+    font-size:11.5px;font-weight:800;
+    letter-spacing:.04em;
+    position:relative;z-index:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .special-countdown svg{width:11px;height:11px}
+
+  /* ==================== INFO PANEL ==================== */
+  .info-panel{
+    display:grid;grid-template-columns:1.3fr 1fr;gap:16px;
+    margin-bottom:56px;
+    animation:fadeUp 1s .5s backwards;
+  }
+
+  .info-card{
+    border-radius:20px;padding:22px 22px 20px;
+    backdrop-filter:blur(16px);
+    border:1px solid;
+    position:relative;overflow:hidden;
+    transition:transform .5s cubic-bezier(.2,.9,.3,1.3),box-shadow .4s;
+  }
+  .info-card:hover{transform:translateY(-4px)}
+
+  .info-card.gain{
+    background:linear-gradient(150deg,rgba(52,211,153,.09),rgba(16,185,129,.02));
+    border-color:rgba(52,211,153,.3);
+    box-shadow:0 20px 50px -30px rgba(52,211,153,.6);
+  }
+  .info-card.gain:hover{box-shadow:0 30px 60px -30px rgba(52,211,153,.9);border-color:rgba(52,211,153,.55)}
+  .info-card.gain::after{
+    content:'';position:absolute;
+    width:180px;height:180px;border-radius:50%;
+    background:radial-gradient(circle,rgba(52,211,153,.4),transparent 70%);
+    top:-90px;right:-60px;opacity:.35;filter:blur(28px);pointer-events:none;
+  }
+
+  .info-card.lose{
+    background:linear-gradient(150deg,rgba(244,63,94,.09),rgba(239,68,68,.02));
+    border-color:rgba(244,63,94,.3);
+    box-shadow:0 20px 50px -30px rgba(244,63,94,.6);
+  }
+  .info-card.lose:hover{box-shadow:0 30px 60px -30px rgba(244,63,94,.9);border-color:rgba(244,63,94,.55)}
+  .info-card.lose::after{
+    content:'';position:absolute;
+    width:180px;height:180px;border-radius:50%;
+    background:radial-gradient(circle,rgba(244,63,94,.4),transparent 70%);
+    top:-90px;right:-60px;opacity:.35;filter:blur(28px);pointer-events:none;
+  }
+
+  .info-head{
+    display:flex;align-items:center;gap:11px;
+    margin-bottom:16px;position:relative;z-index:1;
+  }
+
+  .info-icon{
+    width:38px;height:38px;border-radius:12px;
+    display:grid;place-items:center;flex-shrink:0;
+    position:relative;overflow:hidden;
+  }
+  .gain .info-icon{
+    background:linear-gradient(140deg,rgba(52,211,153,.28),rgba(16,185,129,.12));
+    border:1px solid rgba(52,211,153,.45);
+    color:var(--green);
+    box-shadow:0 0 24px -6px rgba(52,211,153,.9),inset 0 1px 0 rgba(255,255,255,.15);
+  }
+  .lose .info-icon{
+    background:linear-gradient(140deg,rgba(244,63,94,.28),rgba(239,68,68,.12));
+    border:1px solid rgba(244,63,94,.45);
+    color:var(--red);
+    box-shadow:0 0 24px -6px rgba(244,63,94,.9),inset 0 1px 0 rgba(255,255,255,.15);
+  }
+  .info-icon svg{width:18px;height:18px;filter:drop-shadow(0 0 8px currentColor)}
+
+  .info-head h3{
+    font-size:15px;font-weight:800;letter-spacing:-.015em;
+    line-height:1.2;
+  }
+  .gain .info-head h3{color:#a7f3d0}
+  .lose .info-head h3{color:#fda4af}
+
+  .info-head p{
+    font-size:11px;color:var(--muted);font-weight:600;
+    letter-spacing:.04em;margin-top:2px;text-transform:uppercase;
+  }
+
+  .info-list{display:flex;flex-direction:column;gap:9px;position:relative;z-index:1}
+
+  .info-item{
+    display:flex;align-items:flex-start;gap:11px;
+    padding:11px 13px;
+    border-radius:12px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.06);
+    transition:all .35s cubic-bezier(.2,.9,.3,1.3);
+  }
+  .info-item:hover{
+    transform:translateX(4px);
+    background:rgba(255,255,255,.06);
+  }
+  .gain .info-item:hover{border-color:rgba(52,211,153,.4);box-shadow:0 8px 24px -14px rgba(52,211,153,.9)}
+  .lose .info-item:hover{border-color:rgba(244,63,94,.4);box-shadow:0 8px 24px -14px rgba(244,63,94,.9)}
+
+  .info-bullet{
+    flex-shrink:0;width:24px;height:24px;border-radius:8px;
+    display:grid;place-items:center;
+    font-size:12px;font-weight:800;
+    position:relative;top:1px;
+  }
+  .gain .info-bullet{
+    background:rgba(52,211,153,.18);
+    color:var(--green);
+    border:1px solid rgba(52,211,153,.32);
+  }
+  .lose .info-bullet{
+    background:rgba(244,63,94,.18);
+    color:var(--red);
+    border:1px solid rgba(244,63,94,.32);
+  }
+  .info-bullet svg{width:12px;height:12px}
+
+  .info-text{
+    font-size:13px;line-height:1.55;
+    color:#d4d4e6;
+    font-weight:500;
+  }
+  .info-text b{
+    font-weight:800;
+    color:#fff;
+  }
+  .gain .info-text b{color:#a7f3d0}
+  .lose .info-text b{color:#fda4af}
+
+  .info-poin{
+    display:inline-flex;align-items:center;gap:3px;
+    padding:1px 7px;border-radius:100px;
+    font-size:11.5px;font-weight:800;
+    margin-left:5px;
+    letter-spacing:.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .gain .info-poin{
+    background:rgba(52,211,153,.16);
+    color:var(--green);
+    border:1px solid rgba(52,211,153,.3);
+  }
+  .lose .info-poin{
+    background:rgba(244,63,94,.16);
+    color:var(--red);
+    border:1px solid rgba(244,63,94,.3);
+  }
+
   /* ==================== PODIUM ==================== */
+  .section-label{
+    display:flex;align-items:center;gap:10px;
+    margin:0 6px 20px;
+    font-size:12px;font-weight:800;
+    letter-spacing:.16em;text-transform:uppercase;
+    color:#6a6a88;
+  }
+  .section-label::after{
+    content:'';flex:1;height:1px;
+    background:linear-gradient(90deg,rgba(255,255,255,.1),transparent);
+  }
+
   .podium{
     display:grid;grid-template-columns:repeat(3,1fr);
     gap:18px;align-items:end;margin-bottom:60px;
@@ -396,13 +611,37 @@
   @keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
 
   /* ==================== RESPONSIVE ==================== */
+  @media(max-width:860px){
+    .info-panel{grid-template-columns:1fr}
+  }
+
   @media(max-width:760px){
     .wrap{padding:44px 16px 80px}
     header{margin-bottom:38px}
-    .stats{gap:10px;margin:34px 0 44px}
+    .stats{gap:10px;margin:34px 0 24px}
     .stat{padding:16px 14px;border-radius:16px}
     .stat .k{font-size:9.5px;letter-spacing:.08em;margin-bottom:7px}
     .stat .k svg{width:11px;height:11px}
+    .special-date{gap:7px;margin-bottom:7px}
+    .special-date .month{font-size:11px}
+    .special-date .year{font-size:11px}
+    .special-note{font-size:10.5px;gap:5px}
+    .special-note svg{width:11px;height:11px}
+    .special-countdown{font-size:10.5px;padding:4px 9px;gap:5px;margin-top:8px}
+    .special-countdown svg{width:10px;height:10px}
+
+    .info-panel{gap:12px;margin-bottom:44px}
+    .info-card{padding:18px 16px 16px;border-radius:16px}
+    .info-head{gap:10px;margin-bottom:13px}
+    .info-icon{width:34px;height:34px;border-radius:10px}
+    .info-icon svg{width:16px;height:16px}
+    .info-head h3{font-size:13.5px}
+    .info-head p{font-size:10px}
+    .info-item{padding:9px 11px;gap:9px;border-radius:10px}
+    .info-bullet{width:22px;height:22px;border-radius:7px;font-size:11px}
+    .info-bullet svg{width:11px;height:11px}
+    .info-text{font-size:12px}
+    .info-poin{font-size:10.5px;padding:1px 6px}
 
     .podium{gap:8px;margin-bottom:48px}
     .p-avatar{width:60px;height:60px;font-size:20px}
@@ -430,7 +669,6 @@
   }
 
   @media(max-width:420px){
-    .stat .v{font-size:1.25rem}
     .p-name{font-size:10.5px;max-width:78px}
     .rank-1 .p-name{font-size:11.5px}
     .rank-1 .p-avatar{width:64px;height:64px;font-size:21px}
@@ -459,9 +697,9 @@
 
   <!-- HEADER -->
   <header>
-    <div class="badge"><span class="dot"></span> English Club · Season 2026</div>
+    6<div class="badge"><span class="dot"></span> English Club · Season 2025</div>
     <h1>Star <span class="grad">Leaderboard</span></h1>
-    <p class="sub">Kumpulkan bintang dari kehadiran, speaking practice, Q&A, dan sebagainya. Siapa yang akan jadi <b>Star of the Season</b>? ✨</p>
+    <p class="sub">Siapa yang akan jadi <b>Star of the Season</b>? ✨</p>
   </header>
 
   <!-- STATS -->
@@ -480,16 +718,159 @@
       </div>
       <div class="v" id="statStars">0</div>
     </div>
-    <div class="stat" style="animation-delay:.44s;--accent:rgba(34,211,238,.5)">
+    <div class="stat special" style="animation-delay:.44s">
       <div class="k">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg>
-        Hari spesial
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/>
+          <path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/>
+          <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
+        </svg>
+        Hari Spesial
       </div>
-      <div class="v" id="statAvg">0<span>★</span></div>
+      <div class="special-date">
+        <span class="day">01</span>
+        <span class="month">Des</span>
+        <span class="year">2026</span>
+      </div>
+      <div class="special-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 12 20 22 4 22 4 12"/>
+          <rect x="2" y="7" width="20" height="5"/>
+          <line x1="12" y1="22" x2="12" y2="7"/>
+          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+        </svg>
+        Pembagian hadiah & apresiasi
+      </div>
+      <div class="special-countdown" id="countdown">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span>Menghitung...</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO PANEL -->
+  <section class="info-panel">
+    <div class="info-card gain">
+      <div class="info-head">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"/>
+            <polyline points="5 12 12 5 19 12"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Cara Mendapat Bintang</h3>
+          <p>Poin bertambah dari</p>
+        </div>
+      </div>
+      <div class="info-list">
+        <div class="info-item">
+          <div class="info-bullet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="info-text">
+            <b>Kehadiran</b> di setiap sesi ekskul English Club
+            <span class="info-poin">+1 ★</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-bullet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="info-text">
+            <b>Menjawab Special Quiz</b> dengan benar
+            <span class="info-poin">+1 ★</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-bullet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="info-text">
+            <b>Aktif speaking</b> & berpartisipasi dalam kegiatan
+            <span class="info-poin">+1 ★</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-bullet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="info-text">
+            <b>Menang lomba</b> atau tampil di event tertentu
+            <span class="info-poin">+3 ★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card lose">
+      <div class="info-head">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <polyline points="19 12 12 19 5 12"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Pengurangan Bintang</h3>
+          <p>Poin berkurang jika</p>
+        </div>
+      </div>
+      <div class="info-list">
+        <div class="info-item">
+          <div class="info-bullet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </div>
+          <div class="info-text">
+            <b>Tidak hadir ekskul</b> tanpa izin ke BPH
+            <span class="info-poin">−1 ★</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-bullet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </div>
+          <div class="info-text">
+            <b>-</b> -
+            <span class="info-poin">−1 ★</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-bullet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </div>
+          <div class="info-text">
+            <b>-</b> -
+            <span class="info-poin">−1 ★</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- PODIUM -->
+  <div class="section-label">Top 3 · Peringkat Tertinggi</div>
   <section class="podium" id="podium"></section>
 
   <!-- LIST -->
@@ -511,6 +892,16 @@
 </main>
 
 <script>
+/* ============================================================
+   KONFIGURASI HARI SPESIAL
+   -----------------------------------------------------------
+   ✏️ Ubah tanggal pembagian hadiah di sini
+   Format: (tahun, bulan-1, tanggal)
+   Contoh: new Date(2025, 11, 20) = 20 Desember 2025
+   (bulan dimulai dari 0 → Januari=0, Desember=11)
+   ============================================================ */
+const SPECIAL_DAY = new Date(2026, 12, 01); // 20 Desember 2025
+
 /* ============================================================
    DATA ANGGOTA
    -----------------------------------------------------------
@@ -540,6 +931,43 @@ const $ = (s) => document.querySelector(s);
 function initials(name){
   return name.split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase();
 }
+
+/* ============================================================
+   COUNTDOWN HARI SPESIAL
+   ============================================================ */
+(function initCountdown(){
+  const el = $("#countdown");
+  if (!el) return;
+  const span = el.querySelector("span");
+
+  function update(){
+    const now = new Date();
+    const diff = SPECIAL_DAY - now;
+
+    if (diff <= 0){
+      span.textContent = "Coming soon!";
+      el.style.background = "linear-gradient(135deg,rgba(52,211,153,.2),rgba(16,185,129,.1))";
+      el.style.borderColor = "rgba(52,211,153,.5)";
+      el.style.color = "#34d399";
+      return;
+    }
+
+    const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins  = Math.floor((diff / (1000 * 60)) % 60);
+
+    if (days > 0){
+      span.textContent = `${days} hari ${hours} jam lagi`;
+    } else if (hours > 0){
+      span.textContent = `${hours} jam ${mins} menit lagi`;
+    } else {
+      span.textContent = `${mins} menit lagi!`;
+    }
+  }
+
+  update();
+  setInterval(update, 60000);
+})();
 
 /* ============================================================
    TWINKLING STARS
@@ -611,17 +1039,14 @@ let firstLoad = true;
 function renderStats(sorted){
   const totalMembers = sorted.length;
   const totalStars   = sorted.reduce((a, b) => a + b.stars, 0);
-  const avg          = Math.round(totalStars / totalMembers);
 
   if (firstLoad){
     countUp($("#statMembers"), totalMembers);
     countUp($("#statStars"),   totalStars);
-    countUp($("#statAvg"),     avg, 1200, '<span>★</span>');
   } else {
-    const m = $("#statMembers"), s = $("#statStars"), a = $("#statAvg");
+    const m = $("#statMembers"), s = $("#statStars");
     if (m) m.textContent = totalMembers;
     if (s) s.textContent = totalStars;
-    if (a) a.innerHTML   = avg + '<span>★</span>';
   }
 }
 
