@@ -970,7 +970,7 @@
             </svg>
           </div>
           <div class="info-text">
-            <b>Terlambat</b> datang ke sesi ekskul
+            <b>Terlambat</b> membayar uang kas
             <span class="info-poin">−1 ★</span>
           </div>
         </div>
@@ -1027,7 +1027,7 @@
    Contoh: new Date(2026, 11, 1) = 1 Desember 2026
    (bulan dimulai dari 0 → Januari=0, Desember=11)
    ============================================================ */
-const SPECIAL_DAY = new Date(2026, 11, 1); // 1 Desember 2026
+const SPECIAL_DAY = new Date(2026, 10, 1); // 1 Desember 2026
 
 /* ============================================================
    DATA ANGGOTA  (30 orang)
@@ -1038,36 +1038,36 @@ const SPECIAL_DAY = new Date(2026, 11, 1); // 1 Desember 2026
    - Tambah/ kurangi baris sesuai kebutuhan
    ============================================================ */
 const DATA = [
-  { name: "Aisyah Putri",       stars: 156, c1: "#5eead4", c2: "#22d3ee" },
-  { name: "Rizky Ananda",       stars: 148, c1: "#7dd3fc", c2: "#0ea5e9" },
-  { name: "Nadia Salsabila",    stars: 141, c1: "#a5b4fc", c2: "#6366f1" },
-  { name: "Bagas Pratama",      stars: 136, c1: "#67e8f9", c2: "#06b6d4" },
-  { name: "Clara Wijaya",       stars: 129, c1: "#99f6e4", c2: "#14b8a6" },
-  { name: "Dimas Saputra",      stars: 123, c1: "#93c5fd", c2: "#3b82f6" },
-  { name: "Elena Maharani",     stars: 117, c1: "#f0abfc", c2: "#c026d3" },
-  { name: "Fajar Nugroho",      stars: 111, c1: "#5eead4", c2: "#0891b2" },
-  { name: "Gita Larasati",      stars: 105, c1: "#c4b5fd", c2: "#8b5cf6" },
-  { name: "Hanif Rahman",       stars:  99, c1: "#6ee7b7", c2: "#10b981" },
-  { name: "Indah Permata",      stars:  94, c1: "#fda4af", c2: "#f43f5e" },
-  { name: "Joko Prasetyo",      stars:  89, c1: "#7dd3fc", c2: "#0284c7" },
-  { name: "Kartika Sari",       stars:  84, c1: "#fcd34d", c2: "#f59e0b" },
-  { name: "Lukman Hakim",       stars:  79, c1: "#a7f3d0", c2: "#059669" },
-  { name: "Maya Anggraini",     stars:  74, c1: "#fbcfe8", c2: "#db2777" },
-  { name: "Naufal Rizki",       stars:  69, c1: "#93c5fd", c2: "#2563eb" },
-  { name: "Oktavia Dewi",       stars:  64, c1: "#67e8f9", c2: "#0891b2" },
-  { name: "Putra Wijaya",       stars:  59, c1: "#5eead4", c2: "#0d9488" },
-  { name: "Qonita Amelia",      stars:  54, c1: "#d8b4fe", c2: "#a855f7" },
-  { name: "Rafi Maulana",       stars:  49, c1: "#7dd3fc", c2: "#1d4ed8" },
-  { name: "Sinta Ramadhani",    stars:  44, c1: "#fda4af", c2: "#e11d48" },
-  { name: "Taufik Hidayat",     stars:  39, c1: "#a7f3d0", c2: "#047857" },
-  { name: "Umi Kalsum",         stars:  34, c1: "#fef08a", c2: "#ca8a04" },
-  { name: "Vino Alfarizi",      stars:  29, c1: "#99f6e4", c2: "#0f766e" },
-  { name: "Wulan Suci",         stars:  25, c1: "#f9a8d4", c2: "#be185d" },
-  { name: "Xavier Pratama",     stars:  21, c1: "#93c5fd", c2: "#1e40af" },
-  { name: "Yusuf Maulana",      stars:  17, c1: "#6ee7b7", c2: "#065f46" },
-  { name: "Zahra Aulia",        stars:  13, c1: "#c4b5fd", c2: "#7c3aed" },
-  { name: "Aditya Bagus",       stars:   9, c1: "#67e8f9", c2: "#155e75" },
-  { name: "Bunga Citra",        stars:   5, c1: "#fbcfe8", c2: "#9d174d" }
+  { name: "Frida (XI.10)",       stars: 2, c1: "#5eead4", c2: "#22d3ee" },
+  { name: "Maheswari (X.5)",       stars: 2, c1: "#7dd3fc", c2: "#0ea5e9" },
+  { name: "Nabila (X.6)",    stars: 2, c1: "#a5b4fc", c2: "#6366f1" },
+  { name: "Khayla (X.6)",      stars: 2, c1: "#67e8f9", c2: "#06b6d4" },
+  { name: "Dinda (XI.4)",       stars: 2, c1: "#99f6e4", c2: "#14b8a6" },
+  { name: "Nathania (X.2)",      stars: 2, c1: "#93c5fd", c2: "#3b82f6" },
+  { name: "Nopiyanti (XI.4)",     stars: 2, c1: "#f0abfc", c2: "#c026d3" },
+  { name: "Aulia (X.2)",      stars: 2, c1: "#5eead4", c2: "#0891b2" },
+  { name: "Rifai (X.9)",      stars: 2, c1: "#c4b5fd", c2: "#8b5cf6" },
+  { name: "Syarifah (XI.1)",       stars:  2, c1: "#6ee7b7", c2: "#10b981" },
+  { name: "Viona (X.6)",      stars:  2, c1: "#fda4af", c2: "#f43f5e" },
+  { name: "Raihan (X.9)",      stars:  2, c1: "#7dd3fc", c2: "#0284c7" },
+  { name: "Faridah (XI.1)",       stars:  2, c1: "#fcd34d", c2: "#f59e0b" },
+  { name: "Quinsha (XI.1)",       stars:  2, c1: "#a7f3d0", c2: "#059669" },
+  { name: "Iklima (X.2)",     stars:  2, c1: "#fbcfe8", c2: "#db2777" },
+  { name: "Fathir (X.2)",       stars:  2, c1: "#93c5fd", c2: "#2563eb" },
+  { name: "Rayyan",       stars:  1, c1: "#67e8f9", c2: "#0891b2" },
+  { name: "Kansya",       stars:  1, c1: "#5eead4", c2: "#0d9488" },
+  { name: "Zevanya",      stars:  1, c1: "#d8b4fe", c2: "#a855f7" },
+  { name: "Titania",       stars:  1, c1: "#7dd3fc", c2: "#1d4ed8" },
+  { name: "Kanaya",    stars:  1, c1: "#fda4af", c2: "#e11d48" },
+  { name: "Yurei Danzu",     stars:  999, c1: "#a7f3d0", c2: "#047857" },
+  { name: "Nothing",         stars:  0, c1: "#fef08a", c2: "#ca8a04" },
+  { name: "Nothing",      stars:  0, c1: "#99f6e4", c2: "#0f766e" },
+  { name: "Nothing",         stars:  0, c1: "#f9a8d4", c2: "#be185d" },
+  { name: "Nothing",     stars:  0, c1: "#93c5fd", c2: "#1e40af" },
+  { name: "Nothing",      stars:  0, c1: "#6ee7b7", c2: "#065f46" },
+  { name: "Nothing",        stars:  0, c1: "#c4b5fd", c2: "#7c3aed" },
+  { name: "Nothing",       stars:   0, c1: "#67e8f9", c2: "#155e75" },
+  { name: "Nothing",        stars:   0, c1: "#fbcfe8", c2: "#9d174d" }
 ];
 
 /* ============================================================
